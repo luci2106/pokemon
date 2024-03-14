@@ -27,7 +27,7 @@ header{
 }
 #menu-movil li:nth-child(-n+2) {
     /* Estilos que deseas aplicar a los dos primeros elementos */
-    border-right: 1px solid blue;
+    border-right: 1px solid red;
 }
 #loading{
     display: block;
@@ -36,7 +36,7 @@ header{
 }
 #containerpk article{
     width: 20%;
-    border: 10px solid blue;
+    border: 10px solid red;
     border-radius: 5px;
     display:flexbox;
     flex-direction: column;

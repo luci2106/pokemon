@@ -1,4 +1,3 @@
-
 var pokemon = {};
 var next = "";
 var previous = "";
@@ -132,23 +131,6 @@ function cargarDatosPokemon(listaNueva) {
     }
 }
 
-function extractInfoPokemon(info) {
-    pokemon[info.name] = {
-        img: info.sprites.front_default,
-        types: info.types.map(t => t.type.name),
-        id: info.id,
-        experience: info.base_experience,
-        sprite:[info.sprites.front_default,info.sprites.back_default]
-    }
-    let selector = "#" + info.name + " img";
-    document.querySelector(selector).src = pokemon[info.name].img;
-    selector = "#" + info.name + " span";
-    let textos = document.querySelectorAll(selector);
-    textos[0].innerHTML = pokemon[info.name].types;
-    textos[1].innerHTML = pokemon[info.name].id;
-    textos[2].innerHTML = pokemon[info.name].experience;
-
-}
 
 function mostarDatosIniciales(listaPk) {
     var contenidoPK = "";
@@ -160,9 +142,9 @@ function mostarDatosIniciales(listaPk) {
                 <h3>${element.name}</h3>
                 <img src="img/loading.gif" alt="">
                 <div>
-                    <p><label>Types:</label><span></span></p>
+                    <p><label>Type:</label><span></span></p>
                     <p><label>Id:</label><span></span></p>
-                    <p><label>Experience</label><span></span></p> 
+                    <p><label>Ability</label><span></span></p> 
                 </div>
             </article>`;
         }
@@ -181,9 +163,9 @@ function mostarDatosIniciales(listaPk) {
                 <h3>${element.name}</h3>
                 <img src="img/loading.gif" alt="">
                 <div>
-                    <p><label>Types:</label><span></span></p>
+                    <p><label>Type:</label><span></span></p>
                     <p><label>Id:</label><span></span></p>
-                    <p><label>Experience</label><span></span></p> 
+                    <p><label>Ability</label><span></span></p> 
                 </div>
                 <button onclick="changeBackgroundColor('${element.name}')">Change Color</button>
             </article>`;
@@ -203,3 +185,45 @@ function getRandomColor() {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
 }
 
+function asociarEventosArticle() {
+    let articles = document.getElementsByTagName("article");
+    for (let index = 0; index < articles.length; index++) {
+        const article = articles[index];
+        article.addEventListener("mouseenter", function (e) {
+            imagen = e.currentTarget.querySelector("img");
+            // Ocultar la imagen al pasar el cursor sobre ella
+            imagen.style.display = "none";
+        });
+
+        // Manejador de evento cuando el mouse sale del artículo
+        article.addEventListener("mouseleave", function (e) {
+            imagen = e.currentTarget.querySelector("img");
+            // Mostrar la imagen nuevamente cuando el cursor sale de ella
+            imagen.style.display = "block";
+        });
+
+        // Añadir manejador de evento para hacer desaparecer la imagen al hacer clic
+        article.addEventListener("click", function (e) {
+            imagen = e.currentTarget.querySelector("img");
+            // Ocultar la imagen al hacer clic
+            imagen.style.display = "none";
+        });
+    }
+}
+function extractInfoPokemon(info) {
+    pokemon[info.name] = {
+        img: info.sprites.front_default,
+        types: info.types.map(t => t.type.name),
+        id: info.id,
+        abilities: info.abilities.map(a => a.ability.name), // Obtener las habilidades
+        sprite:[info.sprites.front_default,info.sprites.back_default]
+    }
+    let selector = "#" + info.name + " img";
+    document.querySelector(selector).src = pokemon[info.name].img;
+    selector = "#" + info.name + " span";
+    let textos = document.querySelectorAll(selector);
+    textos[0].innerHTML = pokemon[info.name].types;
+    textos[1].innerHTML = pokemon[info.name].id;
+    // Mostrar las habilidades
+    textos[2].innerHTML = pokemon[info.name].abilities.join(", ");
+}
