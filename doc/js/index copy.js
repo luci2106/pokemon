@@ -170,3 +170,36 @@ function mostarDatosIniciales(listaPk) {
     document.getElementById("containerpk").innerHTML = contenidoPK;
     asociarEventosArticle();
 }
+
+function mostarDatosIniciales(listaPk) {
+    var contenidoPK = "";
+    for (const pk in listaPk) {
+        if (Object.hasOwnProperty.call(listaPk, pk)) {
+            const element = listaPk[pk];
+            contenidoPK += `
+            <article id="${element.name}" style="background-color: white;">
+                <h3>${element.name}</h3>
+                <img src="img/loading.gif" alt="">
+                <div>
+                    <p><label>Types:</label><span></span></p>
+                    <p><label>Id:</label><span></span></p>
+                    <p><label>Experience</label><span></span></p> 
+                </div>
+                <button onclick="changeBackgroundColor('${element.name}')">Change Color</button>
+            </article>`;
+        }
+    }
+    document.getElementById("containerpk").innerHTML = contenidoPK;
+    asociarEventosArticle();
+}
+
+function changeBackgroundColor(pokemonName) {
+    const article = document.getElementById(pokemonName);
+    article.style.backgroundColor = getRandomColor(); // Cambia el color de fondo
+}
+
+function getRandomColor() {
+    // Genera un color hexadecimal aleatorio
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
+}
+
