@@ -1,3 +1,20 @@
+#logo{
+    width: 200px;
+}
+
+header{
+    display: flex;
+    justify-content: space-between; 
+}
+.container{
+    width: 80%;
+    margin:0 auto;
+    background-color: yellowgreen;
+
+}
+.barras-menu{
+    display:none;
+}
 .estilo-menu{
     list-style: none;
     display: flex;  
@@ -11,7 +28,7 @@
 }
 #menu-movil li:nth-child(-n+2) {
     /* Estilos que deseas aplicar a los dos primeros elementos */
-    border-right: 1px solid green ;
+    border-right: 1px solid red;
 }
 #loading{
     display: block;
@@ -20,7 +37,7 @@
 }
 #containerpk article{
     width: 20%;
-    border: 10px solid green;
+    border: 5px solid red;
     border-radius: 5px;
     display:flexbox;
     flex-direction: column;

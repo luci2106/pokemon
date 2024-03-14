@@ -9,6 +9,7 @@ header{
 .container{
     width: 80%;
     margin:0 auto;
+    background-color: aquamarine;
 
 }
 .barras-menu{
@@ -72,7 +73,7 @@ article img {
 }
 
 /* Media query para tamaños de pantalla más pequeños donde quieres ocultar el h1 */
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 500px) {
     .barras-menu{
         display: block;
     }

@@ -9,10 +9,12 @@ header{
 .container{
     width: 80%;
     margin:0 auto;
+    background-color: chocolate;
 
 }
 .barras-menu{
     display:none;
+    font-size: medium;
 }
 .estilo-menu{
     list-style: none;
